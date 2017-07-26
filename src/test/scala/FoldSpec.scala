@@ -23,13 +23,17 @@ class FoldSpec extends FlatSpec with Matchers {
   }
 
   "foldRight" should "fold collection" in {
-    /*val ints = List(1, 2, 3, 4, 5, 6, 7, 8, 9)
+    val ints = List(1, 2, 3, 4, 5, 6, 7, 8, 9)
     val strings:List[String] = for (in <- ints) yield in.toString
 
-    val result = ints.foldRight(List[String]()) { (a, b) => b.toString :: a }
-    assertResult(strings, "should equal")(result)*/
-    /*val result = List("kayak","ayruveda","yeti", "abra", "kadabra").foldRight("") { (a, b) => if (!b.isEmpty) b.toList.head + a else "" }
+    val result = ints.foldRight(List[String]()) { (a, b) => a.toString :: b }
+    assertResult(strings, "should equal")(result)
+  }
 
-    assertResult("kayak", "should equal")(result)*/
+  "foldRight" should "fold to String" in {
+    val result = List("kayak","ayruveda","yeti", "abra", "kadabra").
+      foldRight("") { (a, b) => b + a.toList.head }
+
+    assertResult("kayak", "should equal")(result)
   }
 }
